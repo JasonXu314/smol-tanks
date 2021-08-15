@@ -1,0 +1,3 @@
+interface OrderEvts {
+	MOVE: undefined;
+}
