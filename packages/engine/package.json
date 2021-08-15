@@ -11,7 +11,7 @@
 	},
 	"keywords": [],
 	"author": "",
-	"license": "ISC",
+	"license": "MIT",
 	"devDependencies": {
 		"@types/jest": "^26.0.24",
 		"@typescript-eslint/eslint-plugin": "^4.28.3",
@@ -25,5 +25,6 @@
 		"@smol-tanks/evt-src": "^1.0.0",
 		"nanoid": "^3.1.23",
 		"rbush": "^3.0.1"
-	}
+	},
+	"gitHead": "a5f60f1d75a15204b288459e3b3dce3bff9d5c6b"
 }

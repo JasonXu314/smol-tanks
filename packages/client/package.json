@@ -11,7 +11,7 @@
 	},
 	"keywords": [],
 	"author": "",
-	"license": "ISC",
+	"license": "MIT",
 	"dependencies": {
 		"@smol-tanks/engine": "^1.0.0",
 		"@smol-tanks/evt-src": "^1.0.0",
@@ -32,5 +32,6 @@
 		"eslint-plugin-react-hooks": "^4.2.0",
 		"sass": "^1.35.2",
 		"typescript": "^4.3.5"
-	}
+	},
+	"gitHead": "a5f60f1d75a15204b288459e3b3dce3bff9d5c6b"
 }
