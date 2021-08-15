@@ -23,5 +23,8 @@
 	"dependencies": {
 		"rbush": "^3.0.1"
 	},
-	"gitHead": "f5ade67e43c08ca48e0475f2bbcf402b116b1e2b"
+	"gitHead": "e08c42135b833d09cb2657d4504b0458de544b5c",
+	"publishConfig": {
+		"access": "public"
+	}
 }
