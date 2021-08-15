@@ -1,6 +1,6 @@
 {
 	"name": "@smol-tanks/engine",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
@@ -22,7 +22,7 @@
 		"typescript": "^4.3.5"
 	},
 	"dependencies": {
-		"@smol-tanks/evt-src": "^1.0.1",
+		"@smol-tanks/evt-src": "^1.0.2",
 		"nanoid": "^3.1.23",
 		"rbush": "^3.0.1"
 	},
