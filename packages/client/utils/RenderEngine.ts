@@ -1,5 +1,5 @@
-import { RenderEngine } from 'engine';
-import { RawVector } from 'engine/dist/math';
+import { RenderEngine } from '@smol-tanks/engine';
+import { RawVector } from '@smol-tanks/engine/dist/math';
 
 export class ClientRenderEngine implements RenderEngine {
 	private ctx: CanvasRenderingContext2D;
@@ -17,7 +17,12 @@ export class ClientRenderEngine implements RenderEngine {
 		this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 	}
 
-	public fillPath(path: RawVector[], width: number, outline: string | CanvasGradient, fill: string | CanvasGradient): void {
+	public fillPath(
+		path: RawVector[],
+		width: number,
+		outline: string | CanvasGradient,
+		fill: string | CanvasGradient
+	): void {
 		const offsetPath = path.map((pt) => this.gameToCanvas(pt));
 		this.ctx.fillStyle = fill;
 		this.ctx.strokeStyle = outline;

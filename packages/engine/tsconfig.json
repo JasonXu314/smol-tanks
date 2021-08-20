@@ -10,9 +10,14 @@
 		"module": "esnext",
 		"moduleResolution": "node",
 		"resolveJsonModule": true,
-		"outDir": "./dist",
-		"rootDir": "./src",
-		"declaration": true
+		"rootDir": ".",
+		"declaration": true,
+		"downlevelIteration": true,
+		"paths": {
+			"math/*": ["math"],
+			"utils/*": ["utils"]
+		},
+		"baseUrl": "."
 	},
-	"exclude": ["node_modules", "tests", "jest.config.js", "dist"]
+	"exclude": ["node_modules", "tests", "jest.config.js", "**/**.js"]
 }

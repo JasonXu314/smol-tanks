@@ -1,6 +1,6 @@
-import { Engine, RenderEngine, Template, Unit } from 'engine';
-import { Rectangle, Vector } from 'engine/dist/math';
-import { TRANSPARENT } from 'engine/dist/utils/utils';
+import { Engine, RenderEngine, Template, Unit } from '@smol-tanks/engine';
+import { Rectangle, Vector } from '@smol-tanks/engine/dist/math';
+import { TRANSPARENT } from '@smol-tanks/engine/dist/utils/utils';
 import { intersects, rotateBy } from '../utils/utils';
 import { Driver } from './crew/Driver';
 
@@ -51,8 +51,8 @@ export class Sherman implements Unit {
 			engine.line([this._position.toRaw(), this._target.toRaw()], 1, 'green');
 		}
 		engine.fillPath(
-			TEMPLATES.CHASSIS.map((vec) => rotateBy(vec.scale(1), -this._direction.reflexAngle).scale(vec.magnitude)).map((vec) =>
-				vec.add(this._position).toRaw()
+			TEMPLATES.CHASSIS.map((vec) => rotateBy(vec.scale(1), -this._direction.reflexAngle).scale(vec.magnitude)).map(
+				(vec) => vec.add(this._position).toRaw()
 			),
 			1,
 			this._selected ? 'white' : TRANSPARENT,

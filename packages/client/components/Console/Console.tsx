@@ -1,4 +1,4 @@
-import { GameObject } from 'engine';
+import { GameObject } from '@smol-tanks/engine';
 import { MutableRefObject } from 'react';
 import Game from '../../utils/Game';
 import styles from './Console.module.scss';

@@ -1,5 +1,5 @@
-import { Engine, GameObject, Orders, OrderSrc } from 'engine';
-import { EventSrc } from 'evt-src';
+import { Engine, GameObject, Orders, OrderSrc } from '@smol-tanks/engine';
+import { EventSrc } from '@smol-tanks/evt-src';
 import Head from 'next/head';
 import { NextPage } from 'next/types';
 import { useEffect, useRef, useState } from 'react';

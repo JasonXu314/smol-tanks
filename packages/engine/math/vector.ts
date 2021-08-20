@@ -51,7 +51,7 @@ export class Vector {
 	}
 
 	public scale(mag: number): Vector {
-		return this.magnitude === 0 ? this.multiply(0) : this.multiply(mag / this.magnitude);
+		return this.magnitude === 0 ? this : this.multiply(mag / this.magnitude);
 	}
 
 	public scaleBy(fac: number): Vector {
@@ -73,7 +73,7 @@ export class Vector {
 	public proj(v: Vector): Vector {
 		const angle = abs(this.angleTo(v));
 
-		if (angle > Math.PI / 2) {
+		if (angle > 90) {
 			return v.inv().multiply(this.dot(v.inv()) / v.magnitude ** 2);
 		} else {
 			return v.multiply(this.dot(v) / v.magnitude ** 2);

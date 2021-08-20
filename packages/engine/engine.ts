@@ -1,7 +1,17 @@
-import { EventSrc, Unsubscriber } from 'evt-src';
+import { EventSrc, Unsubscriber } from '@smol-tanks/evt-src';
+import { Rectangle, Vector } from 'math';
 import { nanoid } from 'nanoid';
-import { Rectangle, Vector } from './math';
-import { GameObject, GameObjectConstructor, Orders, OrderSrc, RenderEngine, RenderEngineConstructor, TickInfo, Unit, UnitConstructor } from './types';
+import {
+	GameObject,
+	GameObjectConstructor,
+	Orders,
+	OrderSrc,
+	RenderEngine,
+	RenderEngineConstructor,
+	TickInfo,
+	Unit,
+	UnitConstructor
+} from './types';
 import { Cursor } from './utils/Cursor';
 import { SelectBox } from './utils/SelectBox';
 import { isDynamic } from './utils/utils';
@@ -40,7 +50,16 @@ export class Engine {
 
 	constructor(public canvas: HTMLCanvasElement, RenderEngine: RenderEngineConstructor, public orderEvents: OrderSrc) {
 		this.events = new EventSrc(['INIT', 'TICK']);
-		this.domEvents = EventSrc.fromSrc(window, ['mousemove', 'mouseleave', 'mouseenter', 'mousedown', 'mouseup', 'keydown', 'keyup', 'contextmenu']);
+		this.domEvents = EventSrc.fromSrc(window, [
+			'mousemove',
+			'mouseleave',
+			'mouseenter',
+			'mousedown',
+			'mouseup',
+			'keydown',
+			'keyup',
+			'contextmenu'
+		]);
 
 		this.renderEngine = new RenderEngine(canvas);
 		this.cursor = new Cursor(this);

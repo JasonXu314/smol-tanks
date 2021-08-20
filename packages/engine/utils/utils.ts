@@ -9,3 +9,7 @@ export function isGameObject(entity: Entity): entity is GameObject {
 export function isDynamic(obj: GameObject): obj is DynamicGameObject {
 	return obj.dynamic;
 }
+
+export function random(max: number = 1): number {
+	return Math.random() * max;
+}

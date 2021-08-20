@@ -1,5 +1,5 @@
-import { Engine, GameObject, Unit, UnitConstructor } from 'engine';
-import { EventSrc } from 'evt-src';
+import { Engine, GameObject, Unit, UnitConstructor } from '@smol-tanks/engine';
+import { EventSrc } from '@smol-tanks/evt-src';
 
 interface GameEvts {
 	SELECT_UNITS: GameObject[];

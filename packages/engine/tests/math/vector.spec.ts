@@ -1,4 +1,4 @@
-import { Vector } from '../../src/math';
+import { Vector } from '../../math';
 
 describe('Vector Test suite', () => {
 	it('Should have correct values', () => {

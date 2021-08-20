@@ -141,6 +141,22 @@
     "@nodelib/fs.scandir" "2.1.4"
     fastq "^1.6.0"
 
+"@smol-tanks/engine@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@smol-tanks/engine/-/engine-1.0.4.tgz#2f8414b83d1dd9798be2fe1c021a338d48ddc88b"
+  integrity sha512-hcdsmgTI90lW5ZMKEozEsbl1Hde24f2yfy2JaS3hQco4Vpr5lp4LxHda9o3+Gzt8XVzGSaTAr1lYr+Zdl2rd6w==
+  dependencies:
+    "@smol-tanks/evt-src" "^1.0.4"
+    nanoid "^3.1.23"
+    rbush "^3.0.1"
+
+"@smol-tanks/evt-src@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@smol-tanks/evt-src/-/evt-src-1.0.4.tgz#6c0ccc35c0b6604e57b94932ffc237a31bbd7141"
+  integrity sha512-O32xeLMNslhdVNLAKsMAzTzGaMVOjaK0ZtlrFcBKVaPEsMHr+UCZoTK1UxVa2g60uOThOZn3uFe8p2kn6UYH+A==
+  dependencies:
+    rbush "^3.0.1"
+
 "@types/json-schema@^7.0.7":
   version "7.0.7"
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.7.tgz#98a993516c859eb0d5c4c8f098317a9ea68db9ad"
@@ -1812,6 +1828,11 @@ nanoid@^3.1.22:
   version "3.1.23"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.1.23.tgz#f744086ce7c2bc47ee0a8472574d5c78e4183a81"
   integrity sha512-FiB0kzdP0FFVGDKlRLEQ1BgDzU87dy5NnzjeW9YZNt+/c3+q82EQDUwniSAUxp/F0gFNI1ZhKU1FqYsMuqZVnw==
+
+nanoid@^3.1.23:
+  version "3.1.25"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.1.25.tgz#09ca32747c0e543f0e1814b7d3793477f9c8e152"
+  integrity sha512-rdwtIXaXCLFAQbnfqDRnI6jaRHp9fTcYBjtFKE8eezcZ7LuLjhUaQGNeMXf1HmRoCH32CLz6XwX0TtxEOS/A3Q==
 
 native-url@0.3.4:
   version "0.3.4"

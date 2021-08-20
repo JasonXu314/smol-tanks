@@ -1,5 +1,5 @@
+import { Vector } from 'math';
 import { Engine } from '../engine';
-import { Vector } from '../math';
 import { DynamicGameObject, RenderEngine, Template } from '../types';
 
 type CursorTypes = 'DEFAULT' | 'MOVE';
@@ -57,7 +57,11 @@ export class Cursor implements DynamicGameObject {
 				);
 				break;
 			case 'MOVE':
-				engine.drawImage(this.engine.mousePos.toRaw(), [15 - this.animTick / 5, 15 - this.animTick / 5], 'move.svg');
+				engine.drawImage(
+					this.engine.mousePos.toRaw(),
+					[15 - this.animTick / 5, 15 - this.animTick / 5],
+					'move.svg'
+				);
 				break;
 		}
 	}
