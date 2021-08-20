@@ -26,7 +26,13 @@
 		"math/shapes/rectangle.js",
 		"math/shapes/rectangle.d.ts",
 		"math/shapes/segment.js",
-		"math/shapes/segment.d.ts"
+		"math/shapes/segment.d.ts",
+		"utils/Cursor.js",
+		"utils/Cursor.d.ts",
+		"utils/SelectBox.js",
+		"utils/SelectBox.d.ts",
+		"utils/utils.js",
+		"utils/utils.d.ts"
 	],
 	"scripts": {
 		"test": "jest",
