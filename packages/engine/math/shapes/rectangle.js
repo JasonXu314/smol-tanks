@@ -1,3 +1,4 @@
+"use strict";
 var __read = (this && this.__read) || function (o, n) {
     var m = typeof Symbol === "function" && o[Symbol.iterator];
     if (!m) return o;
@@ -14,6 +15,8 @@ var __read = (this && this.__read) || function (o, n) {
     }
     return ar;
 };
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Rectangle = void 0;
 var Rectangle = /** @class */ (function () {
     function Rectangle(minX, minY, maxX, maxY) {
         this.minX = minX;
@@ -33,4 +36,4 @@ var Rectangle = /** @class */ (function () {
     };
     return Rectangle;
 }());
-export { Rectangle };
+exports.Rectangle = Rectangle;

@@ -1,3 +1,6 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Segment = void 0;
 var Segment = /** @class */ (function () {
     function Segment(p1, p2) {
         this.p1 = p1;
@@ -6,4 +9,4 @@ var Segment = /** @class */ (function () {
     }
     return Segment;
 }());
-export { Segment };
+exports.Segment = Segment;

@@ -1,18 +1,27 @@
-export function radToDeg(num) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.acos = exports.log = exports.ln = exports.abs = exports.sqrt = exports.radToDeg = void 0;
+function radToDeg(num) {
     return (num * 180) / Math.PI;
 }
-export function sqrt(num) {
+exports.radToDeg = radToDeg;
+function sqrt(num) {
     return Math.sqrt(num);
 }
-export function abs(num) {
+exports.sqrt = sqrt;
+function abs(num) {
     return Math.abs(num);
 }
-export function ln(num) {
+exports.abs = abs;
+function ln(num) {
     return Math.log(num);
 }
-export function log(num) {
+exports.ln = ln;
+function log(num) {
     return Math.log10(num);
 }
-export function acos(num) {
+exports.log = log;
+function acos(num) {
     return radToDeg(Math.acos(num));
 }
+exports.acos = acos;

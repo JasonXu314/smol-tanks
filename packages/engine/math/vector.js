@@ -1,3 +1,4 @@
+"use strict";
 var __generator = (this && this.__generator) || function (thisArg, body) {
     var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
     return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
@@ -46,8 +47,10 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from) {
         to[j] = from[i];
     return to;
 };
-import { abs, acos, sqrt } from './functions';
-import { sign } from './utils';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Vector = void 0;
+var functions_1 = require("./functions");
+var utils_1 = require("./utils");
 var Vector = /** @class */ (function () {
     function Vector(x, y) {
         if (x === void 0) { x = 0; }
@@ -57,7 +60,7 @@ var Vector = /** @class */ (function () {
     }
     Object.defineProperty(Vector.prototype, "magnitude", {
         get: function () {
-            return sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
+            return functions_1.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
         },
         enumerable: false,
         configurable: true
@@ -104,15 +107,15 @@ var Vector = /** @class */ (function () {
         var dot = this.dot(v);
         var q = this.magnitude * v.magnitude;
         return dot === 0
-            ? (sign(this.x) !== sign(v.x)) !== (sign(this.y) !== sign(v.y))
+            ? (utils_1.sign(this.x) !== utils_1.sign(v.x)) !== (utils_1.sign(this.y) !== utils_1.sign(v.y))
                 ? -90
                 : 90
             : q === 0
                 ? 0
-                : acos(dot / q);
+                : functions_1.acos(dot / q);
     };
     Vector.prototype.proj = function (v) {
-        var angle = abs(this.angleTo(v));
+        var angle = functions_1.abs(this.angleTo(v));
         if (angle > 90) {
             return v.inv().multiply(this.dot(v.inv()) / Math.pow(v.magnitude, 2));
         }
@@ -144,4 +147,4 @@ var Vector = /** @class */ (function () {
     Vector.ZERO = new Vector();
     return Vector;
 }());
-export { Vector };
+exports.Vector = Vector;

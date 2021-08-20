@@ -1,4 +1,7 @@
-import { Rectangle } from '../math';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SelectBox = void 0;
+var math_1 = require("../math");
 var SelectBox = /** @class */ (function () {
     function SelectBox(engine) {
         this.engine = engine;
@@ -15,10 +18,10 @@ var SelectBox = /** @class */ (function () {
                 this.engine.mousePos.toRaw(),
                 [this.engine.mousePos.x, this.engine.downPos.y]
             ], 1, 'white');
-            this.engine.selection = Rectangle.from(this.engine.downPos, this.engine.mousePos);
+            this.engine.selection = math_1.Rectangle.from(this.engine.downPos, this.engine.mousePos);
         }
     };
     SelectBox.prototype.destroy = function () { };
     return SelectBox;
 }());
-export { SelectBox };
+exports.SelectBox = SelectBox;

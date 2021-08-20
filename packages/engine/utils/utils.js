@@ -1,11 +1,17 @@
-export var TRANSPARENT = 'rgba(0, 0, 0, 0)';
-export function isGameObject(entity) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.random = exports.isDynamic = exports.isGameObject = exports.TRANSPARENT = void 0;
+exports.TRANSPARENT = 'rgba(0, 0, 0, 0)';
+function isGameObject(entity) {
     return entity.type === 'GAME_OBJECT';
 }
-export function isDynamic(obj) {
+exports.isGameObject = isGameObject;
+function isDynamic(obj) {
     return obj.dynamic;
 }
-export function random(max) {
+exports.isDynamic = isDynamic;
+function random(max) {
     if (max === void 0) { max = 1; }
     return Math.random() * max;
 }
+exports.random = random;

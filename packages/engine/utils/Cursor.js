@@ -1,3 +1,4 @@
+"use strict";
 var __read = (this && this.__read) || function (o, n) {
     var m = typeof Symbol === "function" && o[Symbol.iterator];
     if (!m) return o;
@@ -19,18 +20,20 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from) {
         to[j] = from[i];
     return to;
 };
-import { Vector } from '../math';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Cursor = void 0;
+var math_1 = require("../math");
 var TEMPLATES = {
-    DEFAULT: [new Vector(12, -13), new Vector(2, -3), new Vector(2, -19), new Vector(7, -14)],
+    DEFAULT: [new math_1.Vector(12, -13), new math_1.Vector(2, -3), new math_1.Vector(2, -19), new math_1.Vector(7, -14)],
     MOVE: [
-        new Vector(-7.5, -7.5),
-        new Vector(7.5, -7.5),
-        new Vector(7.5, 7.5),
-        new Vector(-7.5, 7.5),
-        new Vector(-7.5, -7.5),
-        new Vector(7.5, 7.5),
-        new Vector(7.5, -7.5),
-        new Vector(-7.5, 7.5)
+        new math_1.Vector(-7.5, -7.5),
+        new math_1.Vector(7.5, -7.5),
+        new math_1.Vector(7.5, 7.5),
+        new math_1.Vector(-7.5, 7.5),
+        new math_1.Vector(-7.5, -7.5),
+        new math_1.Vector(7.5, 7.5),
+        new math_1.Vector(7.5, -7.5),
+        new math_1.Vector(-7.5, 7.5)
     ]
 };
 var STYLES = {
@@ -75,4 +78,4 @@ var Cursor = /** @class */ (function () {
     Cursor.prototype.destroy = function () { };
     return Cursor;
 }());
-export { Cursor };
+exports.Cursor = Cursor;
