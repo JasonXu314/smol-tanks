@@ -1,5 +1,5 @@
 import { EventSrc } from '@smol-tanks/evt-src';
-import { Rectangle, Vector } from 'math';
+import { Rectangle, Vector } from './math';
 import { GameObjectConstructor, Orders, OrderSrc, RenderEngineConstructor, TickInfo, Unit, UnitConstructor } from './types';
 interface EngineEvents {
     INIT: undefined;

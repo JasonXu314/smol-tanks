@@ -19,7 +19,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from) {
         to[j] = from[i];
     return to;
 };
-import { Vector } from 'math';
+import { Vector } from '../math';
 var TEMPLATES = {
     DEFAULT: [new Vector(12, -13), new Vector(2, -3), new Vector(2, -19), new Vector(7, -14)],
     MOVE: [

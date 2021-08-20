@@ -1,4 +1,4 @@
-import { Rectangle } from 'math';
+import { Rectangle } from '../math';
 var SelectBox = /** @class */ (function () {
     function SelectBox(engine) {
         this.engine = engine;

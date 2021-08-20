@@ -1,6 +1,6 @@
 import { EventSrc } from '@smol-tanks/evt-src';
-import { Rectangle, Vector } from 'math';
 import { nanoid } from 'nanoid';
+import { Rectangle, Vector } from './math';
 import { Cursor } from './utils/Cursor';
 import { SelectBox } from './utils/SelectBox';
 import { isDynamic } from './utils/utils';
