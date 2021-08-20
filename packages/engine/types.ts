@@ -1,7 +1,7 @@
 import { EventSrc } from '@smol-tanks/evt-src';
-import { Vector } from 'math';
-import { RawVector } from 'math/types';
 import { Engine } from './engine';
+import { Vector } from './math';
+import { RawVector } from './math/types';
 
 export type RenderEngineConstructor = new (canvas: HTMLCanvasElement) => RenderEngine;
 export type GameObjectConstructor = new (engine: Engine, id: string) => GameObject;

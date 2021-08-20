@@ -1,5 +1,5 @@
 import { RenderEngine } from '@smol-tanks/engine';
-import { RawVector } from '@smol-tanks/engine/dist/math';
+import { RawVector } from '@smol-tanks/engine/math';
 
 export class ClientRenderEngine implements RenderEngine {
 	private ctx: CanvasRenderingContext2D;

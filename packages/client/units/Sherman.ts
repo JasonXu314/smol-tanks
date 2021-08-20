@@ -1,6 +1,6 @@
 import { Engine, RenderEngine, Template, Unit } from '@smol-tanks/engine';
-import { Rectangle, Vector } from '@smol-tanks/engine/dist/math';
-import { TRANSPARENT } from '@smol-tanks/engine/dist/utils/utils';
+import { Rectangle, Vector } from '@smol-tanks/engine/math';
+import { TRANSPARENT } from '@smol-tanks/engine/utils/utils';
 import { intersects, rotateBy } from '../utils/utils';
 import { Driver } from './crew/Driver';
 

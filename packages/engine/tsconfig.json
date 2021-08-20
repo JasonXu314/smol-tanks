@@ -14,10 +14,10 @@
 		"declaration": true,
 		"downlevelIteration": true,
 		"paths": {
-			"math/*": ["math"],
-			"utils/*": ["utils"]
+			"math/*": ["math/*"],
+			"utils/*": ["utils/*"]
 		},
 		"baseUrl": "."
 	},
-	"exclude": ["node_modules", "tests", "jest.config.js", "**/**.js"]
+	"exclude": ["node_modules", "tests", "jest.config.js", "**/**.js", "**/**.d.ts"]
 }
