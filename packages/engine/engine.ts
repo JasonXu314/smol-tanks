@@ -1,6 +1,6 @@
 import { EventSrc, Unsubscriber } from '@smol-tanks/evt-src';
-import { Rectangle, Vector } from 'math';
 import { nanoid } from 'nanoid';
+import { Rectangle, Vector } from './math';
 import {
 	GameObject,
 	GameObjectConstructor,

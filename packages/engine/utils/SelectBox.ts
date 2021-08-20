@@ -1,5 +1,5 @@
-import { Rectangle } from 'math';
 import { Engine } from '../engine';
+import { Rectangle } from '../math';
 import { DynamicGameObject, RenderEngine } from '../types';
 
 export class SelectBox implements DynamicGameObject {

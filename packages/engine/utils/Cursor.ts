@@ -1,5 +1,5 @@
-import { Vector } from 'math';
 import { Engine } from '../engine';
+import { Vector } from '../math';
 import { DynamicGameObject, RenderEngine, Template } from '../types';
 
 type CursorTypes = 'DEFAULT' | 'MOVE';
