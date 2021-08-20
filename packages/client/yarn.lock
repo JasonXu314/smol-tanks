@@ -141,10 +141,10 @@
     "@nodelib/fs.scandir" "2.1.4"
     fastq "^1.6.0"
 
-"@smol-tanks/engine@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@smol-tanks/engine/-/engine-1.2.0.tgz#09c269524e495298e369e455eba4168771490083"
-  integrity sha512-TKmiWRU8SJu1+MxCQnBhNfFRS1DZufcKd6QVTdyqp4W6mm1sOaS33gFBkyRgRQPUhejxye4HGYPxBDIJtl3/hg==
+"@smol-tanks/engine@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@smol-tanks/engine/-/engine-1.2.1.tgz#ead39120222710ba2ad6ed427b63780ed5074985"
+  integrity sha512-L8qBZGAv9FtSmDFV5KkruRDHJSJQODu8D8MzvduBJOQcFYBi73fXAbNlkwT7iACKYfhrFxL/g90qnCtU8zxYWg==
   dependencies:
     "@smol-tanks/evt-src" "^1.0.4"
     nanoid "^3.1.23"

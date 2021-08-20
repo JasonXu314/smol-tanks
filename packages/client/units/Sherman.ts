@@ -73,6 +73,7 @@ export class Sherman implements Unit {
 
 		if (this.target) {
 			const [left, right] = this.driver.getDifferentials();
+			console.log(left, right);
 			this._direction = rotateBy(this._direction, right > left ? this.turnRate : -this.turnRate);
 		}
 	}
