@@ -1,6 +1,6 @@
 {
 	"name": "@smol-tanks/client",
-	"version": "1.4.0",
+	"version": "1.5.0",
 	"description": "",
 	"main": "index.js",
 	"scripts": {
@@ -13,7 +13,7 @@
 	"author": "",
 	"license": "MIT",
 	"dependencies": {
-		"@smol-tanks/engine": "^1.4.0",
+		"@smol-tanks/engine": "^1.5.0",
 		"@smol-tanks/evt-src": "^1.4.0",
 		"next": "^11.1.0",
 		"rbush": "^3.0.1",
