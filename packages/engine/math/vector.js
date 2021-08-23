@@ -50,7 +50,6 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Vector = void 0;
 var functions_1 = require("./functions");
-var utils_1 = require("./utils");
 var Vector = /** @class */ (function () {
     function Vector(x, y) {
         if (x === void 0) { x = 0; }
@@ -65,10 +64,25 @@ var Vector = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
+    Object.defineProperty(Vector.prototype, "quadrant", {
+        get: function () {
+            return this.x >= 0 && this.y >= 0 ? 1 : this.x <= 0 && this.y >= 0 ? 2 : this.x <= 0 && this.y < 0 ? 3 : 4;
+        },
+        enumerable: false,
+        configurable: true
+    });
     Object.defineProperty(Vector.prototype, "reflexAngle", {
         get: function () {
-            var out = this.angleTo(Vector.I);
-            return out < 0 ? 360 + out : out;
+            switch (this.quadrant) {
+                case 1:
+                    return functions_1.atan(this.y / this.x);
+                case 2:
+                    return Math.PI + functions_1.atan(this.y / this.x);
+                case 3:
+                    return functions_1.atan(this.y / this.x) - Math.PI;
+                case 4:
+                    return functions_1.atan(this.y / this.x);
+            }
         },
         enumerable: false,
         configurable: true
@@ -88,6 +102,9 @@ var Vector = /** @class */ (function () {
     Vector.prototype.equals = function (v) {
         return this.x === v.x && this.y === v.y;
     };
+    Vector.prototype.closeTo = function (v) {
+        return Math.abs(this.x - v.x) <= 0.0005 && Math.abs(this.y - v.y) <= 0.0005;
+    };
     Vector.prototype.clone = function () {
         return new Vector(this.x, this.y);
     };
@@ -103,25 +120,30 @@ var Vector = /** @class */ (function () {
     Vector.prototype.scaleBy = function (fac) {
         return this.scale(this.magnitude * fac);
     };
+    Vector.prototype.rotateBy = function (angle) {
+        return new Vector(this.x * functions_1.cos(angle) - this.y * functions_1.sin(angle), this.x * functions_1.sin(angle) + this.y * functions_1.cos(angle)).scale(this.magnitude);
+    };
+    Vector.prototype.dirToRight = function (v) {
+        // normalize other angle
+        var normalized = v.rotateBy(-this.reflexAngle);
+        return normalized.y < 0;
+    };
     Vector.prototype.angleTo = function (v) {
         var dot = this.dot(v);
         var q = this.magnitude * v.magnitude;
-        return dot === 0
-            ? (utils_1.sign(this.x) !== utils_1.sign(v.x)) !== (utils_1.sign(this.y) !== utils_1.sign(v.y))
-                ? -90
-                : 90
-            : q === 0
-                ? 0
-                : functions_1.acos(dot / q);
+        return q === 0 ? 0 : (dot === 0 ? Math.PI / 2 : functions_1.acos(dot / q)) * (this.dirToRight(v) ? -1 : 1);
     };
     Vector.prototype.proj = function (v) {
         var angle = functions_1.abs(this.angleTo(v));
-        if (angle > 90) {
+        if (angle > Math.PI / 2) {
             return v.inv().multiply(this.dot(v.inv()) / Math.pow(v.magnitude, 2));
         }
         else {
             return v.multiply(this.dot(v) / Math.pow(v.magnitude, 2));
         }
+    };
+    Vector.prototype.distanceTo = function (v) {
+        return functions_1.sqrt(Math.pow((v.y - this.y), 2) + Math.pow((v.x - this.x), 2));
     };
     Vector.prototype.toRaw = function () {
         return [this.x, this.y];
@@ -148,3 +170,6 @@ var Vector = /** @class */ (function () {
     return Vector;
 }());
 exports.Vector = Vector;
+if (typeof window !== 'undefined') {
+    window.Vector = Vector;
+}

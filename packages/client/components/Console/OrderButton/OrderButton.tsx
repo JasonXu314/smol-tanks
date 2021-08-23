@@ -7,7 +7,11 @@ interface Props {
 
 const OrderButton: React.FC<Props> = ({ icon, hotkey, trigger, label }) => {
 	return (
-		<div onClick={() => trigger()}>
+		<div
+			onClick={(evt) => {
+				evt.stopPropagation();
+				trigger();
+			}}>
 			<img src={icon} alt={label} />
 		</div>
 	);

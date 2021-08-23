@@ -9,13 +9,15 @@ export declare type EntityType = 'GAME_OBJECT' | 'UNIT';
 export declare type Template<T extends string> = Record<T, Vector[]>;
 export declare type OrderSrc = EventSrc<Orders>;
 export interface RenderEngine {
+    zoom: number;
+    viewPos: RawVector;
     clear(): void;
     renderBackground(): void;
     fillPath(path: RawVector[], width: number, stroke: string | CanvasGradient, fill: string | CanvasGradient): void;
     tracePath(path: RawVector[], width: number, stroke: string | CanvasGradient): void;
     gameToCanvas(vec: RawVector): RawVector;
     canvasToGame(vec: RawVector): RawVector;
-    drawImage(pos: RawVector, dims: RawVector, image: string, center?: boolean): void;
+    drawImage(pos: RawVector, [width, height]: [number, number], image: string, center?: boolean): void;
     line(path: RawVector[], width: number, stroke: string | CanvasGradient): void;
 }
 export interface TickInfo {
@@ -42,6 +44,7 @@ export interface Unit extends DynamicGameObject {
     readonly target: Vector | null;
     readonly position: Vector;
     readonly direction: Vector;
+    readonly speed: number;
     readonly turnRate: number;
     readonly maxSpeed: number;
     readonly accel: number;

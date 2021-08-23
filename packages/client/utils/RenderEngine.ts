@@ -2,6 +2,9 @@ import { RenderEngine } from '@smol-tanks/engine';
 import { RawVector } from '@smol-tanks/engine/math';
 
 export class ClientRenderEngine implements RenderEngine {
+	public zoom: number = 1;
+	public viewPos: RawVector = [0, 0];
+
 	private ctx: CanvasRenderingContext2D;
 
 	constructor(private canvas: HTMLCanvasElement) {
@@ -56,7 +59,7 @@ export class ClientRenderEngine implements RenderEngine {
 		this.ctx.stroke();
 	}
 
-	public drawImage(pos: RawVector, [width, height]: RawVector, image: string, center: boolean = true): void {
+	public drawImage(pos: RawVector, [width, height]: [number, number], image: string, center: boolean = true): void {
 		const [x, y] = this.gameToCanvas(pos);
 		const img = new Image();
 		img.src = image;
@@ -64,10 +67,16 @@ export class ClientRenderEngine implements RenderEngine {
 	}
 
 	public gameToCanvas([x, y]: RawVector): RawVector {
-		return [x + this.canvas.width / 2, this.canvas.height / 2 - y];
+		return [
+			(x - this.viewPos[0]) / this.zoom + this.canvas.width / 2,
+			this.canvas.height / 2 - (y - this.viewPos[1]) / this.zoom
+		];
 	}
 
 	public canvasToGame([x, y]: RawVector): RawVector {
-		return [x - this.canvas.width / 2, this.canvas.height / 2 - y];
+		return [
+			(x - this.canvas.width / 2) * this.zoom + this.viewPos[0],
+			(this.canvas.height / 2 - y) * this.zoom + this.viewPos[1]
+		];
 	}
 }

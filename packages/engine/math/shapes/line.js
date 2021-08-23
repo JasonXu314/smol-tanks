@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Line = void 0;
 var vector_1 = require("../vector");
+var ray_1 = require("./ray");
 var Line = /** @class */ (function () {
     function Line(pt, slope) {
         this.slope = slope;
@@ -24,11 +25,19 @@ var Line = /** @class */ (function () {
         }
     }
     Line.prototype.intersects = function (other) {
-        return this.slope === other.slope
-            ? this.slope === undefined
-                ? this.intercept.x === other.intercept.x
-                : this.intercept.y === other.intercept.y
-            : true;
+        if (other instanceof Line) {
+            return this.slope === other.slope
+                ? this.slope === undefined
+                    ? this.intercept.x === other.intercept.x
+                    : this.intercept.y === other.intercept.y
+                : true;
+        }
+        else if (other instanceof ray_1.Ray) {
+            return false;
+        }
+        else {
+            return false;
+        }
     };
     Line.prototype.eval = function (x) {
         return this.slope === undefined ? undefined : this.intercept.y + x * this.slope;

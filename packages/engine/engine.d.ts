@@ -11,8 +11,10 @@ export declare class Engine {
     events: EventSrc<EngineEvents>;
     domEvents: EventSrc<GlobalEventHandlersEventMap>;
     running: boolean;
+    mouseDown: boolean;
     mousePos: Vector;
     downPos: Vector | null;
+    mouseButton: number | null;
     upPos: Vector | null;
     ctrl: boolean;
     alt: boolean;
@@ -26,7 +28,11 @@ export declare class Engine {
     private layers;
     private cursor;
     private selectBox;
+    private scrolling;
+    private panning;
+    private zoomTarget;
     private units;
+    private _selectedUnits;
     get selectedUnits(): Unit[];
     constructor(canvas: HTMLCanvasElement, RenderEngine: RenderEngineConstructor, orderEvents: OrderSrc);
     private tick;

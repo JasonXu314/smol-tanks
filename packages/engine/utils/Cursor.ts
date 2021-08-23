@@ -1,27 +1,7 @@
 import { Engine } from '../engine';
-import { Vector } from '../math';
-import { DynamicGameObject, RenderEngine, Template } from '../types';
+import { DynamicGameObject, RenderEngine } from '../types';
 
 type CursorTypes = 'DEFAULT' | 'MOVE';
-
-const TEMPLATES: Template<CursorTypes> = {
-	DEFAULT: [new Vector(12, -13), new Vector(2, -3), new Vector(2, -19), new Vector(7, -14)],
-	MOVE: [
-		new Vector(-7.5, -7.5),
-		new Vector(7.5, -7.5),
-		new Vector(7.5, 7.5),
-		new Vector(-7.5, 7.5),
-		new Vector(-7.5, -7.5),
-		new Vector(7.5, 7.5),
-		new Vector(7.5, -7.5),
-		new Vector(-7.5, 7.5)
-	]
-};
-
-const STYLES = {
-	DEFAULT: [2, 'white', 'black'],
-	MOVE: [1, 'green']
-} as const;
 
 export class Cursor implements DynamicGameObject {
 	private cursorType: CursorTypes = 'DEFAULT';
@@ -51,10 +31,7 @@ export class Cursor implements DynamicGameObject {
 	public render(engine: RenderEngine): void {
 		switch (this.cursorType) {
 			case 'DEFAULT':
-				engine.fillPath(
-					TEMPLATES[this.cursorType].map((template) => template.add(this.engine.mousePos).toRaw()),
-					...STYLES[this.cursorType]
-				);
+				engine.drawImage(this.engine.mousePos.toRaw(), [10, 16], 'default.svg', false);
 				break;
 			case 'MOVE':
 				engine.drawImage(

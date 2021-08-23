@@ -63,7 +63,7 @@ const Index: NextPage = () => {
 					canvas.current = elem;
 				}}
 			/>
-			<Console gameRef={game} units={units} />
+			{units.length !== 0 && <Console gameRef={game} units={units} />}
 		</div>
 	);
 };

@@ -1,4 +1,6 @@
+import { MathConstruct } from 'math/types';
 import { Vector } from '../vector';
+import { Ray } from './ray';
 
 export class Line {
 	public intercept: Vector;
@@ -24,12 +26,18 @@ export class Line {
 		}
 	}
 
-	public intersects(other: Line): boolean {
-		return this.slope === other.slope
-			? this.slope === undefined
-				? this.intercept.x === other.intercept.x
-				: this.intercept.y === other.intercept.y
-			: true;
+	public intersects(other: MathConstruct): boolean {
+		if (other instanceof Line) {
+			return this.slope === other.slope
+				? this.slope === undefined
+					? this.intercept.x === other.intercept.x
+					: this.intercept.y === other.intercept.y
+				: true;
+		} else if (other instanceof Ray) {
+			return false;
+		} else {
+			return false;
+		}
 	}
 
 	public eval(x: number): number | undefined {
