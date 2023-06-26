@@ -5,10 +5,15 @@ import { RawVector } from './math/types';
 
 export type RenderEngineConstructor = new (canvas: HTMLCanvasElement) => RenderEngine;
 export type GameObjectConstructor = new (engine: Engine, id: string) => GameObject;
-export type UnitConstructor = new (engine: Engine, id: string) => Unit;
+export type UnitConstructor = new (engine: Engine, id: string, initPos: Vector) => Unit;
 export type EntityType = 'GAME_OBJECT' | 'UNIT';
 export type Template<T extends string> = Record<T, Vector[]>;
 export type OrderSrc = EventSrc<Orders>;
+
+export type Order = MoveOrder;
+export type Orders = {
+	MOVE: MoveOrder;
+};
 
 export interface RenderEngine {
 	zoom: number;
@@ -60,9 +65,10 @@ export interface Unit extends DynamicGameObject {
 	readonly maxSpeed: number;
 	readonly accel: number;
 
-	move(vec: Vector): void;
+	issueOrder(order: Order, queue: boolean): void;
 }
 
-export interface Orders {
-	MOVE: RawVector;
+export interface MoveOrder {
+	type: 'MOVE';
+	target: Vector;
 }

@@ -1,4 +1,4 @@
-import { MathConstruct } from 'math/types';
+import { MathConstruct } from '../types';
 import { Vector } from '../vector';
 import { Ray } from './ray';
 

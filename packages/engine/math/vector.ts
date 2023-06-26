@@ -74,9 +74,7 @@ export class Vector {
 	}
 
 	public rotateBy(angle: number): Vector {
-		return new Vector(this.x * cos(angle) - this.y * sin(angle), this.x * sin(angle) + this.y * cos(angle)).scale(
-			this.magnitude
-		);
+		return new Vector(this.x * cos(angle) - this.y * sin(angle), this.x * sin(angle) + this.y * cos(angle)).scale(this.magnitude);
 	}
 
 	public dirToRight(v: Vector): boolean {
@@ -119,6 +117,7 @@ export class Vector {
 		return new Vector(...raw);
 	}
 }
+
 if (typeof window !== 'undefined') {
 	(window as any).Vector = Vector;
 }

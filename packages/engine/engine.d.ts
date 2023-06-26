@@ -18,6 +18,7 @@ export declare class Engine {
     upPos: Vector | null;
     ctrl: boolean;
     alt: boolean;
+    shift: boolean;
     selection: Rectangle | null;
     order: keyof Orders | null;
     private gameLoop;
@@ -30,6 +31,7 @@ export declare class Engine {
     private selectBox;
     private scrolling;
     private panning;
+    private panTicks;
     private zoomTarget;
     private units;
     private _selectedUnits;

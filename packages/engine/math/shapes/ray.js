@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Ray = void 0;
+var vector_1 = require("../vector");
 var line_1 = require("./line");
 var Ray = /** @class */ (function () {
     function Ray(vertex, direction) {
@@ -25,9 +26,18 @@ var Ray = /** @class */ (function () {
             return false;
         }
     };
-    Ray.prototype.toRight = function (pt) {
+    Ray.prototype.toRight = function (c) {
+        if (c instanceof vector_1.Vector) {
+            var dirToPt = c.subtract(this.vertex);
+            return this.direction.angleTo(dirToPt) < 0;
+        }
+        else {
+            return this.direction.dirToRight(c.direction);
+        }
+    };
+    Ray.prototype.behind = function (pt) {
         var dirToPt = pt.subtract(this.vertex);
-        return this.direction.angleTo(dirToPt) < 0;
+        return Math.abs(this.direction.angleTo(dirToPt)) > Math.PI / 2;
     };
     // public intersection(other: Line): Vector {
     // 	if (!this.intersects(other)) {
@@ -59,6 +69,9 @@ var Ray = /** @class */ (function () {
     // 		c2 = other.intercept.y;
     // 	return new Vector((c1 - c2) / (a2! - a1!), (c1 * a2! - c2 * a1!) / (a2! - a1!));
     // }
+    Ray.prototype.inv = function () {
+        return new Ray(this.vertex, this.direction.inv());
+    };
     Ray.prototype[Symbol.toPrimitive] = function () {
         return "vertex: " + this.vertex + ", dir: " + this.direction;
     };

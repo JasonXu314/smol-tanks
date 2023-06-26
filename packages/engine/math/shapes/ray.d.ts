@@ -1,4 +1,4 @@
-import { MathConstruct } from 'math/types';
+import { MathConstruct } from '../types';
 import { Vector } from '../vector';
 export declare class Ray {
     vertex: Vector;
@@ -6,6 +6,8 @@ export declare class Ray {
     get slope(): number | undefined;
     constructor(vertex: Vector, direction: Vector);
     intersects(other: MathConstruct): boolean;
-    toRight(pt: Vector): boolean;
+    toRight(c: Vector | Ray): boolean;
+    behind(pt: Vector): boolean;
+    inv(): Ray;
     [Symbol.toPrimitive](): string;
 }

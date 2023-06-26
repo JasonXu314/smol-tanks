@@ -47,6 +47,7 @@ var Engine = /** @class */ (function () {
         this.upPos = null;
         this.ctrl = false;
         this.alt = false;
+        this.shift = false;
         this.selection = null;
         this.order = null;
         this.gameLoop = null;
@@ -56,6 +57,7 @@ var Engine = /** @class */ (function () {
         this.layers = [];
         this.scrolling = false;
         this.panning = false;
+        this.panTicks = 0;
         this.zoomTarget = 1;
         this.units = [];
         this._selectedUnits = [];
@@ -103,6 +105,9 @@ var Engine = /** @class */ (function () {
                 var _b = __read(_this.renderEngine.canvasToGame([evt.clientX, evt.clientY]), 2), nx = _b[0], ny = _b[1];
                 var _c = __read(_this.renderEngine.viewPos, 2), ovx = _c[0], ovy = _c[1];
                 _this.renderEngine.viewPos = [ovx - (nx - ox), ovy - (ny - oy)];
+                if (_this.panning) {
+                    _this.panTicks++;
+                }
                 if (!_this.panning) {
                     _this.panning = true;
                 }
@@ -141,25 +146,26 @@ var Engine = /** @class */ (function () {
                     }
                     else if (_this.order === 'MOVE') {
                         _this.selectedUnits.forEach(function (unit) {
-                            unit.move(_this.mousePos);
+                            unit.issueOrder({ type: 'MOVE', target: _this.mousePos }, _this.shift);
                         });
                         _this.order = null;
                         _this.downPos = null;
                     }
                 }
                 else if (evt.button === 2 && (_this.downPos.equals(_this.mousePos) || _this.scrolling)) {
-                    if (_this.panning) {
-                        _this.panning = false;
-                    }
-                    else {
+                    if (!_this.panning || _this.panTicks < 3) {
                         if (!_this.order) {
                             _this.selectedUnits.forEach(function (unit) {
-                                unit.move(_this.mousePos);
+                                unit.issueOrder({ type: 'MOVE', target: _this.mousePos }, _this.shift);
                             });
                         }
                         else {
                             _this.order = null;
                         }
+                    }
+                    if (_this.panning) {
+                        _this.panning = false;
+                        _this.panTicks = 0;
                     }
                     _this.downPos = null;
                 }
@@ -172,6 +178,9 @@ var Engine = /** @class */ (function () {
             else if (evt.key === 'Alt') {
                 _this.alt = true;
             }
+            else if (evt.key === 'Shift') {
+                _this.shift = true;
+            }
         }));
         this.unsubscribers.push(this.domEvents.on('keyup', function (evt) {
             if (evt.key === 'Control') {
@@ -179,6 +188,9 @@ var Engine = /** @class */ (function () {
             }
             else if (evt.key === 'Alt') {
                 _this.alt = false;
+            }
+            else if (evt.key === 'Shift') {
+                _this.shift = false;
             }
         }));
         this.unsubscribers.push(this.domEvents.on('contextmenu', function (evt) {
@@ -223,7 +235,7 @@ var Engine = /** @class */ (function () {
             this.layers.push([]);
         }
         var id = nanoid_1.nanoid(10);
-        var unit = new Unit(this, id);
+        var unit = new Unit(this, id, new math_1.Vector(Math.random() * 100 - 50, Math.random() * 100 - 50));
         this.layers[0].push(unit);
         this.units.push(unit);
     };

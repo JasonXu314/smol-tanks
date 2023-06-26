@@ -1,4 +1,4 @@
-import { MathConstruct } from 'math/types';
+import { MathConstruct } from '../types';
 import { Vector } from '../vector';
 import { Line } from './line';
 
@@ -19,9 +19,18 @@ export class Ray {
 		}
 	}
 
-	public toRight(pt: Vector): boolean {
+	public toRight(c: Vector | Ray): boolean {
+		if (c instanceof Vector) {
+			const dirToPt = c.subtract(this.vertex);
+			return this.direction.angleTo(dirToPt) < 0;
+		} else {
+			return this.direction.dirToRight(c.direction);
+		}
+	}
+
+	public behind(pt: Vector): boolean {
 		const dirToPt = pt.subtract(this.vertex);
-		return this.direction.angleTo(dirToPt) < 0;
+		return Math.abs(this.direction.angleTo(dirToPt)) > Math.PI / 2;
 	}
 
 	// public intersection(other: Line): Vector {
@@ -58,6 +67,10 @@ export class Ray {
 
 	// 	return new Vector((c1 - c2) / (a2! - a1!), (c1 * a2! - c2 * a1!) / (a2! - a1!));
 	// }
+
+	public inv(): Ray {
+		return new Ray(this.vertex, this.direction.inv());
+	}
 
 	[Symbol.toPrimitive]() {
 		return `vertex: ${this.vertex}, dir: ${this.direction}`;

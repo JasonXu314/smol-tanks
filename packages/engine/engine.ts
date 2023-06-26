@@ -1,17 +1,7 @@
 import { EventSrc, Unsubscriber } from '@smol-tanks/evt-src';
 import { nanoid } from 'nanoid';
 import { Rectangle, Vector } from './math';
-import {
-	GameObject,
-	GameObjectConstructor,
-	Orders,
-	OrderSrc,
-	RenderEngine,
-	RenderEngineConstructor,
-	TickInfo,
-	Unit,
-	UnitConstructor
-} from './types';
+import { GameObject, GameObjectConstructor, Orders, OrderSrc, RenderEngine, RenderEngineConstructor, TickInfo, Unit, UnitConstructor } from './types';
 import { Cursor } from './utils/Cursor';
 import { SelectBox } from './utils/SelectBox';
 import { isDynamic } from './utils/utils';
@@ -42,6 +32,7 @@ export class Engine {
 	public upPos: Vector | null = null;
 	public ctrl: boolean = false;
 	public alt: boolean = false;
+	public shift: boolean = false;
 	public selection: Rectangle | null = null;
 	public order: keyof Orders | null = null;
 
@@ -56,6 +47,7 @@ export class Engine {
 	private selectBox: SelectBox;
 	private scrolling: boolean = false;
 	private panning: boolean = false;
+	private panTicks: number = 0;
 	private zoomTarget: number = 1;
 	private units: Unit[] = [];
 	private _selectedUnits: Unit[] = [];
@@ -110,6 +102,9 @@ export class Engine {
 					const [nx, ny] = this.renderEngine.canvasToGame([evt.clientX, evt.clientY]);
 					const [ovx, ovy] = this.renderEngine.viewPos;
 					this.renderEngine.viewPos = [ovx - (nx - ox), ovy - (ny - oy)];
+					if (this.panning) {
+						this.panTicks++;
+					}
 					if (!this.panning) {
 						this.panning = true;
 					}
@@ -151,22 +146,24 @@ export class Engine {
 							});
 						} else if (this.order === 'MOVE') {
 							this.selectedUnits.forEach((unit) => {
-								unit.move(this.mousePos);
+								unit.issueOrder({ type: 'MOVE', target: this.mousePos }, this.shift);
 							});
 							this.order = null;
 							this.downPos = null;
 						}
 					} else if (evt.button === 2 && (this.downPos!.equals(this.mousePos) || this.scrolling)) {
-						if (this.panning) {
-							this.panning = false;
-						} else {
+						if (!this.panning || this.panTicks < 3) {
 							if (!this.order) {
 								this.selectedUnits.forEach((unit) => {
-									unit.move(this.mousePos);
+									unit.issueOrder({ type: 'MOVE', target: this.mousePos }, this.shift);
 								});
 							} else {
 								this.order = null;
 							}
+						}
+						if (this.panning) {
+							this.panning = false;
+							this.panTicks = 0;
 						}
 						this.downPos = null;
 					}
@@ -180,6 +177,8 @@ export class Engine {
 					this.ctrl = true;
 				} else if (evt.key === 'Alt') {
 					this.alt = true;
+				} else if (evt.key === 'Shift') {
+					this.shift = true;
 				}
 			})
 		);
@@ -190,6 +189,8 @@ export class Engine {
 					this.ctrl = false;
 				} else if (evt.key === 'Alt') {
 					this.alt = false;
+				} else if (evt.key === 'Shift') {
+					this.shift = false;
 				}
 			})
 		);
@@ -243,7 +244,7 @@ export class Engine {
 			this.layers.push([]);
 		}
 		const id = nanoid(10);
-		const unit = new Unit(this, id);
+		const unit = new Unit(this, id, new Vector(Math.random() * 100 - 50, Math.random() * 100 - 50));
 		this.layers[0].push(unit);
 		this.units.push(unit);
 	}

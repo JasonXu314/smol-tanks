@@ -12,12 +12,7 @@
 		"resolveJsonModule": true,
 		"rootDir": ".",
 		"declaration": true,
-		"downlevelIteration": true,
-		"paths": {
-			"math/*": ["math/*"],
-			"utils/*": ["utils/*"]
-		},
-		"baseUrl": "."
+		"downlevelIteration": true
 	},
 	"exclude": ["node_modules", "tests", "jest.config.js", "**/**.js", "**/**.d.ts"]
 }
